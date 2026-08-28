@@ -232,123 +232,16 @@ footer {
 footer .heart { color: var(--blush-deep); }
 footer .mini { margin-top: 8px; font-size: 12px; color: var(--muted); }
 
-/* ---------- 信件开场 ---------- */
-.letter-overlay {
-  position: fixed; inset: 0; z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  background:
-    radial-gradient(600px 300px at 20% 15%, rgba(242,166,181,.35), transparent 60%),
-    radial-gradient(600px 320px at 85% 80%, rgba(143,199,187,.3), transparent 60%),
-    linear-gradient(160deg, #fbdce6 0%, #f3e8fb 52%, #e3f2ee 100%);
-  transition: opacity .8s ease, visibility .8s ease;
-}
-.letter-overlay.done { opacity: 0; visibility: hidden; pointer-events: none; }
-.letter-scene { text-align: center; padding: 20px; }
-.letter-spark {
-  position: absolute; font-size: 22px; opacity: .55; pointer-events: none;
-  animation: sparkFloat 6s ease-in-out infinite;
-}
-.letter-spark.s1 { top: 18%; left: 14%; }
-.letter-spark.s2 { top: 26%; right: 16%; animation-delay: 1.5s; }
-.letter-spark.s3 { bottom: 20%; left: 22%; animation-delay: 3s; }
-@keyframes sparkFloat { 0%,100% { transform: translateY(0) rotate(0deg) } 50% { transform: translateY(-18px) rotate(8deg) } }
-
-.envelope {
-  position: relative; width: min(320px, 82vw); height: 210px;
-  margin: 0 auto; cursor: pointer; perspective: 900px;
-  animation: envFloat 3.2s ease-in-out infinite;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-@keyframes envFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
-.env-back {
-  position: absolute; inset: 0; z-index: 1;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #f5b8c9 0%, #e4cdf2 100%);
-  box-shadow: 0 24px 50px rgba(214,140,160,.35);
-}
-.env-back::after {
-  content: ""; position: absolute; left: 18px; right: 18px; bottom: 34px; height: 2px;
-  background: rgba(255,255,255,.6); border-radius: 999px;
-}
-.env-letter {
-  position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2;
-  height: 104px; background: #fff; border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(180,110,135,.22);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  transition: transform .65s cubic-bezier(.18,.75,.3,1), height .65s cubic-bezier(.18,.75,.3,1);
-}
-.envelope.opened .env-letter { height: 185px; transform: translateY(-180px); }
-.letter-inner { padding: 14px 16px 12px; width: 100%; }
-.l-hello { font-family: "Noto Serif SC", serif; font-size: 13px; font-weight: 700; color: var(--blush-deep); letter-spacing: .1em; }
-.l-msg { margin-top: 8px; font-size: 15px; font-weight: 700; line-height: 1.7; color: var(--ink); }
-.l-dates { margin-top: 6px; font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: .14em; }
-.l-btn {
-  margin-top: 12px; padding: 9px 26px; border: 0; border-radius: 999px;
-  background: linear-gradient(120deg, var(--blush-deep), var(--lavender));
-  color: #fff; font-size: 14px; font-weight: 700; font-family: inherit;
-  cursor: pointer; opacity: 0; transform: translateY(8px); pointer-events: none;
-  transition: opacity .4s ease, transform .4s ease, box-shadow .2s ease;
-  box-shadow: 0 8px 20px rgba(224,122,149,.35);
-}
-.l-btn.show { opacity: 1; transform: none; pointer-events: auto; }
-.l-btn:hover { box-shadow: 0 10px 26px rgba(224,122,149,.5); }
-.env-flap {
-  position: absolute; top: 0; left: 0; right: 0; height: 105px; z-index: 3;
-  background: linear-gradient(135deg, #ef9fb6, #d9b6ea);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top center;
-  transition: transform .55s cubic-bezier(.18,.75,.3,1);
-}
-.envelope.opened .env-flap { transform: rotateX(180deg); }
-.env-seal {
-  position: absolute; left: 50%; top: 50%; z-index: 4;
-  width: 58px; height: 58px; margin: -29px 0 0 -29px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #f7a9bd, var(--blush-deep));
-  display: grid; place-items: center; font-size: 24px; color: #fff;
-  box-shadow: 0 6px 16px rgba(224,122,149,.45);
-  transition: transform .4s ease, opacity .4s ease;
-}
-.envelope.opened .env-seal { transform: scale(0) rotate(90deg); opacity: 0; }
-.letter-hint { margin-top: 26px; font-size: 14px; color: #8a6f80; font-weight: 500; letter-spacing: .06em; }
-.letter-hint b { color: var(--blush-deep); }
-
 /* ---------- 入场动画 ---------- */
 .fade-in { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in { opacity: 1; transform: none; transition: none; }
   .hero::before, .hero::after, .hero-icons span { animation: none; }
-  .envelope, .letter-spark { animation: none; }
 }
 </style>
 </head>
 <body>
-
-<!-- ================= 信件开场 ================= -->
-<div id="letterOverlay" class="letter-overlay">
-  <span class="letter-spark s1">🌸</span>
-  <span class="letter-spark s2">💗</span>
-  <span class="letter-spark s3">⭐</span>
-  <div class="letter-scene">
-    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="打开信件">
-      <div class="env-back"></div>
-      <div class="env-letter">
-        <div class="letter-inner">
-          <p class="l-hello">TO 亲爱的你</p>
-          <p class="l-msg">想邀请你一起去花鸟岛<br>看海 · 等日落 · 数星星</p>
-          <p class="l-dates">9.6 - 9.8 · 舟山花鸟岛</p>
-          <button class="l-btn" id="letterOpenBtn">开启旅程 💗</button>
-        </div>
-      </div>
-      <div class="env-flap"></div>
-      <div class="env-seal">💗</div>
-    </div>
-    <p class="letter-hint" id="letterHint">点击信封，<b>打开这封信</b></p>
-  </div>
-</div>
 
 <div class="deco deco-1"></div>
 <div class="deco deco-2"></div>
@@ -591,32 +484,6 @@ footer .mini { margin-top: 8px; font-size: 12px; color: var(--muted); }
 </footer>
 
 <script>
-// 信件开场交互
-(function () {
-  const overlay = document.getElementById('letterOverlay');
-  const envelope = document.getElementById('envelope');
-  const hint = document.getElementById('letterHint');
-  const btn = document.getElementById('letterOpenBtn');
-  let opened = false;
-  document.body.style.overflow = 'hidden';
-  const openLetter = () => {
-    if (opened) return;
-    opened = true;
-    envelope.classList.add('opened');
-    hint.innerHTML = '一封写给花鸟岛的信 ✉️';
-    setTimeout(() => btn.classList.add('show'), 750);
-  };
-  envelope.addEventListener('click', openLetter);
-  envelope.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLetter(); }
-  });
-  btn.addEventListener('click', () => {
-    overlay.classList.add('done');
-    document.body.style.overflow = '';
-    window.scrollTo(0, 0);
-  });
-})();
-
 // 滚动入场动画
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
