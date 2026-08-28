@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7e8ef">
+<meta name="description" content="与你一起相遇花鸟 · 花鸟岛旅拍准备清单 9.6-9.8">
+<title>与你一起相遇花鸟 · 花鸟岛旅拍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blush: #f2a6b5;
+  --blush-deep: #e07a95;
+  --lavender: #b9a7dd;
+  --mint: #8fc7bb;
+  --sea: #6aa8a0;
+  --cream: #fdf7f3;
+  --card: #ffffff;
+  --ink: #4b3f47;
+  --muted: #9a8b93;
+  --line: #f3e3e9;
+  --shadow: 0 12px 32px rgba(214, 140, 160, .14);
+  --radius: 22px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 500px at 90% -5%, rgba(185,167,221,.18), transparent 60%),
+    radial-gradient(1000px 480px at -10% 8%, rgba(242,166,181,.16), transparent 60%),
+    var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+h1, h2, h3, .serif { font-family: "Noto Serif SC", "Songti SC", serif; }
+
+/* ---------- 装饰（无模糊，避免闪烁） ---------- */
+.deco { position: fixed; border-radius: 50%; opacity: .35; z-index: 0; pointer-events: none; }
+.deco-1 { width: 340px; height: 340px; background: #f6c6d3; top: -80px; right: -60px; }
+.deco-2 { width: 300px; height: 300px; background: #cdc3ec; top: 42%; left: -110px; }
+.deco-3 { width: 260px; height: 260px; background: #bfe0d8; bottom: -60px; right: 12%; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: clamp(64px, 10vw, 110px) 20px clamp(70px, 9vw, 96px);
+  background: linear-gradient(160deg, #fbdce6 0%, #f3e8fb 52%, #e3f2ee 100%);
+  overflow: hidden;
+}
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  animation: floaty 7s ease-in-out infinite;
+}
+.hero::before { width: 46px; height: 46px; top: 18%; left: 12%; }
+.hero::after { width: 30px; height: 30px; bottom: 22%; right: 14%; animation-delay: 2s; }
+@keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-16px) } }
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.75);
+  color: var(--sea);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.hero h1 {
+  margin-top: 22px;
+  font-size: clamp(34px, 6vw, 54px);
+  font-weight: 900;
+  letter-spacing: .06em;
+  background: linear-gradient(120deg, #d96d8f 0%, #9d7fd0 55%, #4fa89c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub { margin-top: 14px; color: #7d6b78; font-size: clamp(14px, 2.4vw, 17px); font-weight: 500; }
+.hero-icons { margin-top: 22px; display: flex; justify-content: center; gap: 14px; font-size: 22px; }
+.hero-icons span {
+  width: 46px; height: 46px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(255,255,255,.7);
+  box-shadow: var(--shadow); animation: floaty 5s ease-in-out infinite;
+}
+.hero-icons span:nth-child(2) { animation-delay: 1s }
+.hero-icons span:nth-child(3) { animation-delay: 2s }
+.hero-icons span:nth-child(4) { animation-delay: 3s }
+
+/* 波浪分隔 */
+.wave-divider { position: relative; z-index: 1; margin-top: -1px; }
+.wave-divider svg { display: block; width: 100%; height: 60px; }
+
+/* ---------- 主内容 ---------- */
+main { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 10px 18px 70px; }
+
+section { margin-top: clamp(40px, 6vw, 64px); }
+.section-head { text-align: center; margin-bottom: 26px; }
+.section-emoji { font-size: 30px; }
+.section-head h2 { font-size: clamp(22px, 3.4vw, 28px); font-weight: 900; letter-spacing: .04em; }
+.section-head .line {
+  width: 64px; height: 5px; margin: 12px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blush), var(--lavender), var(--mint));
+}
+.section-head p { margin-top: 10px; color: var(--muted); font-size: 13px; }
+
+/* 卡片通用 */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(214, 140, 160, .22); }
+
+/* ---------- 日程 ---------- */
+.day-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.day-card { position: relative; overflow: hidden; }
+.day-card::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 8px;
+  background: linear-gradient(90deg, var(--blush), var(--lavender), var(--mint));
+}
+.day-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.day-badge {
+  padding: 6px 14px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 13px;
+  background: linear-gradient(120deg, var(--blush-deep), var(--lavender));
+}
+.day-date { color: var(--muted); font-size: 12px; font-weight: 700; }
+.timeline { position: relative; padding-left: 26px; }
+.timeline::before {
+  content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(180deg, var(--blush), var(--mint));
+  border-radius: 999px;
+}
+.tl-item { position: relative; margin-bottom: 14px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-item::before {
+  content: ""; position: absolute; left: -22px; top: 5px; width: 10px; height: 10px;
+  border-radius: 50%; background: #fff; border: 3px solid var(--blush);
+}
+.tl-time { font-size: 12px; font-weight: 700; color: var(--blush-deep); }
+.tl-detail { font-size: 13.5px; line-height: 1.65; margin-top: 2px; }
+.tl-item.hot .tl-time { color: #e0567f; }
+.tl-item.hot::before { border-color: var(--blush-deep); box-shadow: 0 0 0 4px rgba(224, 122, 149, .18); }
+.tl-item.hot .tl-detail b { color: var(--blush-deep); }
+
+/* ---------- 服装 ---------- */
+.costume-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.costume-card { text-align: center; padding: 24px 14px 20px; }
+.costume-avatar {
+  width: 66px; height: 66px; margin: 0 auto 12px;
+  display: grid; place-items: center;
+  font-size: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, #fde3ea, #efe6fb);
+  border: 2px dashed var(--blush);
+}
+.costume-name { font-size: 16px; font-weight: 700; }
+.costume-tag {
+  display: inline-block; margin-top: 8px; padding: 4px 12px;
+  border-radius: 999px; font-size: 11px; font-weight: 700;
+  background: #f6eefb; color: #8a6fb5;
+}
+.costume-tag.blue { background: #eaf5f1; color: #4f9486; }
+.costume-tag.pink { background: #fdeef2; color: #d96d8f; }
+.costume-tip { margin-top: 18px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* ---------- 清单 chips ---------- */
+.chip-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.chip {
+  padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 500;
+  background: #fff; border: 1px solid var(--line); box-shadow: 0 4px 12px rgba(214,140,160,.1);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.chip:hover { transform: translateY(-3px); border-color: var(--blush); }
+.chip b { color: var(--blush-deep); }
+
+/* ---------- 参考资源 ---------- */
+.ref-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.ref-card { position: relative; display: block; text-decoration: none; color: inherit; padding: 18px; }
+.ref-card:active { transform: scale(.97); }
+.ref-ico {
+  width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center;
+  font-size: 22px; color: #fff; margin-bottom: 12px;
+}
+.ref-card h3 { font-size: 15px; font-weight: 700; }
+.ref-card .ref-link { margin-top: 6px; font-size: 11.5px; color: var(--muted); word-break: break-all; }
+.ref-ico.pose { background: linear-gradient(135deg, #9d7fd0, #6aa8a0); }
+.ref-ico.sunset { background: linear-gradient(135deg, #f2a6b5, #f7c77b); }
+.ref-ico.star { background: linear-gradient(135deg, #7f8fd0, #b9a7dd); }
+.ref-ico.dress { background: linear-gradient(135deg, #e07a95, #f2a6b5); }
+.ref-ico.wave { background: linear-gradient(135deg, #4fa89c, #8fc7bb); }
+.ref-card .badge-new {
+  position: absolute; top: 14px; right: 14px; padding: 3px 9px;
+  border-radius: 999px; font-size: 10px; font-weight: 700; color: #fff;
+  background: linear-gradient(120deg, var(--blush-deep), var(--lavender));
+}
+
+/* ---------- 小提醒 ---------- */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.tip-card { position: relative; padding-left: 58px; }
+.tip-num {
+  position: absolute; left: 16px; top: 18px;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--blush), var(--lavender));
+  color: #fff; font-weight: 700; font-size: 13px;
+}
+.tip-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.tip-card p { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+/* ---------- 页脚 ---------- */
+footer {
+  position: relative; z-index: 1; text-align: center;
+  padding: 34px 18px calc(34px + env(safe-area-inset-bottom));
+  background: linear-gradient(120deg, #fbdce6, #efe6fb);
+  font-size: 14px; color: #8a6f80;
+}
+footer .heart { color: var(--blush-deep); }
+footer .mini { margin-top: 8px; font-size: 12px; color: var(--muted); }
+
+/* ---------- 入场动画 ---------- */
+.fade-in { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  .hero::before, .hero::after, .hero-icons span { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="deco deco-1"></div>
+<div class="deco deco-2"></div>
+<div class="deco deco-3"></div>
+
+<!-- ================= Hero ================= -->
+<header class="hero">
+  <span class="hero-badge">ZHOU SHAN · HUANIAO ISLAND</span>
+  <h1>与你一起相遇花鸟</h1>
+  <p class="hero-sub">9.6 - 9.8 · 三天两夜 · 一起去看海边的日落与星光</p>
+  <div class="hero-icons">
+    <span>💗</span><span>🌸</span><span>🌊</span><span>⭐</span><span>📸</span>
+  </div>
+</header>
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C240,64 480,0 720,24 C960,48 1200,8 1440,32 L1440,60 L0,60 Z" fill="#fdf7f3"></path>
+  </svg>
+</div>
+
+<main>
+
+  <!-- ========== 一、拍摄日程 ========== -->
+  <section id="schedule" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">📅</div>
+      <h2>相遇的三天</h2>
+      <div class="line"></div>
+      <p>拍摄日程安排，记得准时出现哦</p>
+    </div>
+
+    <div class="day-grid">
+      <!-- Day 1 -->
+      <div class="card day-card">
+        <div class="day-head">
+          <span class="day-badge">Day 1 · 第一天</span>
+          <span class="day-date">9月6日</span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item hot">
+            <div class="tl-time">07:15 ⭐ 重点</div>
+            <div class="tl-detail">在 <b>2号线龙阳路地铁站</b> 集合，不要迟到哦</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">上午</div>
+            <div class="tl-detail">🚢 上海出发 → 上岛后踩点</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">下午 - 傍晚</div>
+            <div class="tl-detail">📸 拍 <b>ll</b>（南岙沙滩）<br>📸 拍 <b>守岸人（原皮）</b>（南岙沙滩 / 致爱书房 / 玛塔秋千）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="card day-card">
+        <div class="day-head">
+          <span class="day-badge">Day 2 · 第二天</span>
+          <span class="day-date">9月7日</span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">上午</div>
+            <div class="tl-detail">📸 拍 <b>37</b>（南岙沙滩）<br>📸 拍 <b>水陈</b>（南岙沙滩）</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">中午</div>
+            <div class="tl-detail">☀️ 休息一下，补充能量</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">下午 - 傍晚</div>
+            <div class="tl-detail">📸 拍 <b>美树沙耶香</b>（南岙沙滩，晚间可海岸附近拍）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="card day-card">
+        <div class="day-head">
+          <span class="day-badge">Day 3 · 第三天</span>
+          <span class="day-date">9月8日</span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">上午</div>
+            <div class="tl-detail">🔁 补拍前一天没拍完的内容</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:15</div>
+            <div class="tl-detail">🚢 离岛返程，带着照片回家</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 二、服装清单 ========== -->
+  <section id="costumes" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">👗</div>
+      <h2>要带的漂亮衣服</h2>
+      <div class="line"></div>
+      <p>共 5 套 · 每套提前试穿确认，配件带齐哦</p>
+    </div>
+    <div class="costume-grid">
+      <div class="card costume-card">
+        <div class="costume-avatar">🦋</div>
+        <div class="costume-name">ll</div>
+        <span class="costume-tag blue">无期迷途</span>
+      </div>
+      <div class="card costume-card">
+        <div class="costume-avatar">🌊</div>
+        <div class="costume-name">守岸人</div>
+        <span class="costume-tag pink">鸣潮 · 原皮</span>
+      </div>
+      <div class="card costume-card">
+        <div class="costume-avatar">🔮</div>
+        <div class="costume-name">37</div>
+        <span class="costume-tag blue">重返未来1999</span>
+      </div>
+      <div class="card costume-card">
+        <div class="costume-avatar">💧</div>
+        <div class="costume-name">水陈</div>
+        <span class="costume-tag blue">明日方舟</span>
+      </div>
+      <div class="card costume-card">
+        <div class="costume-avatar">🌹</div>
+        <div class="costume-name">美树沙耶香</div>
+        <span class="costume-tag pink">魔法少女小圆</span>
+      </div>
+    </div>
+    <p class="costume-tip">💡 每套都请提前试穿确认，检查配件是否齐全，避免现场缺件～</p>
+  </section>
+
+  <!-- ========== 三、补妆用品 ========== -->
+  <section id="makeup" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">💄</div>
+      <h2>补妆小物</h2>
+      <div class="line"></div>
+      <p>海边风大，补妆和固定发型的东西记得带</p>
+    </div>
+    <div class="chip-wrap">
+      <span class="chip">💄 个人底妆 / 眼妆 / 口红</span>
+      <span class="chip">👱‍♀️ 假发（提前打理好造型）</span>
+      <span class="chip">📎 发网、发夹、定型用品</span>
+    </div>
+  </section>
+
+  <!-- ========== 四、其他建议自带 ========== -->
+  <section id="bring" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">🎒</div>
+      <h2>其他建议自带</h2>
+      <div class="line"></div>
+      <p>海边小旅行，这些带上会更舒服</p>
+    </div>
+    <div class="chip-wrap">
+      <span class="chip">🧴 防晒霜、驱蚊用品</span>
+      <span class="chip">👟 防滑鞋（礁石区湿滑）</span>
+      <span class="chip">💧 水壶（海边容易渴）</span>
+    </div>
+  </section>
+
+  <!-- ========== 五、参考资源 ========== -->
+  <section id="reference" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">📖</div>
+      <h2>参考资源</h2>
+      <div class="line"></div>
+      <p>提前看看，到现场更顺手</p>
+    </div>
+    <div class="ref-grid">
+      <a class="card ref-card" href="https://pose.luotianacg.com">
+        <span class="badge-new">完整姿势库</span>
+        <div class="ref-ico pose">📖</div>
+        <h3>姿势参考网站</h3>
+        <div class="ref-link">pose.luotianacg.com · 多角色动作参考</div>
+      </a>
+      <a class="card ref-card" href="https://www.douyin.com/video/7620802306574409329">
+        <div class="ref-ico sunset">🌅</div>
+        <h3>日落转场</h3>
+        <div class="ref-link">douyin.com/video/7620802306574409329</div>
+      </a>
+      <a class="card ref-card" href="https://www.douyin.com/video/7645270939160316258">
+        <div class="ref-ico star">⭐</div>
+        <h3>星游记</h3>
+        <div class="ref-link">douyin.com/video/7645270939160316258</div>
+      </a>
+      <a class="card ref-card" href="https://www.douyin.com/video/7676041600150024613">
+        <div class="ref-ico dress">👗</div>
+        <h3>换衣转场</h3>
+        <div class="ref-link">douyin.com/video/7676041600150024613</div>
+      </a>
+      <a class="card ref-card" href="https://www.douyin.com/video/7631131434334366184">
+        <div class="ref-ico wave">🌊</div>
+        <h3>海浪视频</h3>
+        <div class="ref-link">douyin.com/video/7631131434334366184</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== 六、现场小提醒 ========== -->
+  <section id="tips" class="fade-in">
+    <div class="section-head">
+      <div class="section-emoji">💌</div>
+      <h2>现场小提醒</h2>
+      <div class="line"></div>
+      <p>记住这些，拍照更顺利</p>
+    </div>
+    <div class="tips-grid">
+      <div class="card tip-card">
+        <span class="tip-num">1</span>
+        <h3>🌬️ 风大，发型会乱</h3>
+        <p>海边风大，发夹 / 发网一定带上，发型不容易被吹乱。</p>
+      </div>
+      <div class="card tip-card">
+        <span class="tip-num">2</span>
+        <h3>🌅 傍晚逆光很美</h3>
+        <p>傍晚有逆光拍摄环节，可以提前想想喜欢的姿势。</p>
+      </div>
+      <div class="card tip-card">
+        <span class="tip-num">3</span>
+        <h3>👗 换衣转场流程</h3>
+        <p>有参考「换衣」镜头，现场换装流程提前对一下，效率更高。</p>
+      </div>
+      <div class="card tip-card">
+        <span class="tip-num">4</span>
+        <h3>💗 保持好心情</h3>
+        <p>旅拍最重要的是开心，放松地玩、放松地拍！</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>💗 <span class="heart">与你一起相遇花鸟</span> 💗</div>
+  <div class="mini">9.6 - 9.8 · 舟山花鸟岛 · 有疑问随时沟通 😊</div>
+</footer>
+
+<script>
+// 滚动入场动画
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: .12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
